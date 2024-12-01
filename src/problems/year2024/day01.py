@@ -1,10 +1,21 @@
+import _io
 from collections import Counter
 
 import numpy as np
 
 
-def historian_hysteria(lists: tuple[list[int], list[int]]):
-    left_list, right_list = lists
+def parse_input(fp: _io.FileIO):
+    left_list, right_list = [], []
+    for row in fp.readlines():
+        left_elem, right_elem = row.strip().split()
+        left_list.append(int(left_elem))
+        right_list.append(int(right_elem))
+    return left_list, right_list
+
+
+def main(data):
+    left_list, right_list = data
+
     return (
         distance_between_lists(left_list=left_list, right_list=right_list),
         similarity_score(left_list=left_list, right_list=right_list),

@@ -1,5 +1,6 @@
-# Exclude input files
+# Exclude input files & env files
 inputs/
+AOC_TOKEN_SESSION.txt
 
 # Pycharm related files
 .idea/
