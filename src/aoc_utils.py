@@ -39,6 +39,11 @@ class AdventOfCodeConnector:
             )
         elif "You don't seem to be solving the right level." in response.text:
             print("Level already solved, cannot submit answer")
+        elif "That's the right answer!" in response.text:
+            if "[Continue to Part Two]" in response.text:
+                print("Successfully answered level 1 !")
+            else:
+                print("ERROR PAS ENCORE IMPLEMENTE", "\n", response.text)
         else:
             print(f"Error while submitting answer : {response.text}")
 

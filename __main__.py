@@ -15,7 +15,9 @@ from src.common.meta import load_module
 
 sys.setrecursionlimit(1_000_000)
 
-with open("AOC_TOKEN_SESSION.txt") as fp:
+with open(
+    os.path.join(os.path.dirname(os.path.realpath(__file__)), "AOC_TOKEN_SESSION.txt")
+) as fp:
     os.environ["AOC_TOKEN_SESSION"] = fp.read()
 
 
@@ -34,7 +36,9 @@ def main(year: str):
 
 def execute_problem(year: str, problem_number: str, send_answer: bool):
     path_file_input = get_path_input(
-        path_dir_input="inputs",
+        path_dir_input=os.path.join(
+            os.path.dirname(os.path.realpath(__file__)), "inputs"
+        ),
         problem_number=problem_number,
         year=year,
     )
@@ -44,12 +48,16 @@ def execute_problem(year: str, problem_number: str, send_answer: bool):
 
     module = load_module(
         module_path=os.path.join(
-            "src", "problems", f"year{year}", f"day{problem_number}.py"
+            os.path.dirname(os.path.realpath(__file__)),
+            "src",
+            "problems",
+            f"year{year}",
+            f"day{problem_number}.py",
         )
     )
 
     t1 = time.time()
-    with open(path_file_input) as fp:
+    with open(path_file_input, newline="\n") as fp:
         data = module.parse_input(fp=fp)
     results = module.main(data)
     t2 = time.time()

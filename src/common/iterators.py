@@ -22,3 +22,8 @@ def cycle(iterable: iter):
     while True:
         for element in iterable:
             yield element
+
+
+def all_elements_except_one(iterable: iter):
+    for idx in range(len(iterable)):
+        yield iterable[:idx] + iterable[idx + 1 :]
