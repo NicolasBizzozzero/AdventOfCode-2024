@@ -43,7 +43,12 @@ class AdventOfCodeConnector:
             if "[Continue to Part Two]" in response.text:
                 print("Successfully answered level 1 !")
             else:
-                print("ERROR PAS ENCORE IMPLEMENTE", "\n", response.text)
+                print("Successfully answered level 2 !")
+        elif "That's not the right answer" in response.text:
+            if "your answer is too low" in response.text:
+                print("Wrong answer, your answer is too low")
+            else:
+                print("Wrong answer, your answer is too high")
         else:
             print(f"Error while submitting answer : {response.text}")
 
