@@ -26,6 +26,8 @@ class AdventOfCodeConnector:
                 exit(1)
 
     def submit_answer(self, year: str, day: str, level: str, answer: str):
+        assert str(level) in ("1", "2"), "Level must be only two values, 1 or 2"
+
         url = f"{self.url.format(year=year, day=int(day))}/answer"
         response = requests.post(
             url,
