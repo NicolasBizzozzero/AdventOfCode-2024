@@ -51,3 +51,19 @@ def transpose(grid: list[list[Any]]) -> list[list[Any]]:
         list[list[Any]]: The transposed grid.
     """
     return [list(row) for row in zip(*grid)]
+
+
+def print_grid(grid: list[list[Any]]) -> None:
+    for row in grid:
+        print("".join(row))
+    print()
+
+
+def get_column(x: int, grid: list[list[Any]]) -> list[Any]:
+    """Returns the specified column (x) from the grid."""
+    return [row[x] for row in grid]
+
+
+def get_row(y: int, grid: list[list[Any]]) -> list[Any]:
+    """Returns the specified row (y) from the grid."""
+    return grid[y]
