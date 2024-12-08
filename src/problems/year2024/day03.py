@@ -1,8 +1,6 @@
 import _io
 import re
 
-import numpy as np
-
 
 def parse_input(fp: _io.FileIO):
     result = ""

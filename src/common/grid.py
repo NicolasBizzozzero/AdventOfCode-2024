@@ -67,3 +67,11 @@ def get_column(x: int, grid: list[list[Any]]) -> list[Any]:
 def get_row(y: int, grid: list[list[Any]]) -> list[Any]:
     """Returns the specified row (y) from the grid."""
     return grid[y]
+
+
+def is_in_grid(point: tuple[int, int], grid: list[list[str]]) -> bool:
+    if not grid or not grid[0]:
+        return False
+
+    # Check if the point is within bounds
+    return 0 <= point[0] < len(grid) and 0 <= point[1] < len(grid[0])

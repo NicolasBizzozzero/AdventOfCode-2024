@@ -1,7 +1,4 @@
 import _io
-import itertools
-
-import numpy as np
 
 
 def parse_input(fp: _io.FileIO):

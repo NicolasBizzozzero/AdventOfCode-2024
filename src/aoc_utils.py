@@ -51,6 +51,10 @@ class AdventOfCodeConnector:
                 print("Wrong answer, your answer is too low")
             else:
                 print("Wrong answer, your answer is too high")
+        elif "You gave an answer too recently" in response.text:
+            print(
+                f"You gave an answer too recently, please wait 1 min between each answers"
+            )
         else:
             print(f"Error while submitting answer : {response.text}")
 

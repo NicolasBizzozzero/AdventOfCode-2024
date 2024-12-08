@@ -1,8 +1,6 @@
 import _io
 from typing import Any
 
-import numpy as np
-
 from src.common.grid import rotate_90_right
 
 

@@ -10,7 +10,7 @@ def parse_input(fp: _io.FileIO):
     exit(0)
 
 
-def main(data):
+def main(data) -> tuple[int, int]:
     return (
         level1(data=data),
         # level2(data=data)
