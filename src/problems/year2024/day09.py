@@ -1,6 +1,7 @@
 import _io
 
 from src.common.iterables import first_index_of_consecutive_items
+from src.common.maths import is_even
 
 
 def parse_input(fp: _io.FileIO):
@@ -27,12 +28,11 @@ def level2(disk_map: str) -> int:
 
 def disk_map_to_blocks(disk_map: str) -> list[int]:
     blocks = []
-    for i, block in enumerate(disk_map):
-        for _ in range(int(block)):
-            if i % 2 == 0:
-                blocks.append(i // 2)
-            else:
-                blocks.append(-1)
+    for idx_block, block in enumerate(disk_map):
+        if is_even(idx_block):
+            blocks += [idx_block // 2] * int(block)
+        else:
+            blocks += [-1] * int(block)
     return blocks
 
 
