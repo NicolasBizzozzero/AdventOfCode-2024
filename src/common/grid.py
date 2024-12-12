@@ -1,4 +1,4 @@
-from typing import Any, Iterable
+from typing import Any, Iterable, Generator
 
 
 def rotate_90_right(grid: list[list[Any]]) -> list[list[Any]]:
@@ -160,3 +160,33 @@ def is_in_bound(grid: list[list[Any]], idx: tuple[int, int]) -> bool:
     row, col = idx
     rows, cols = len(grid), len(grid[0])
     return 0 <= row < rows and 0 <= col < cols
+
+
+def iter_grid(grid: list[list[Any]]) -> Iterable[Any]:
+    """
+    Iterates through each element in a 2D grid.
+
+    Args:
+        grid (list[list[Any]]): A 2D list to iterate over.
+
+    Yields:
+        Any: Each element of the grid.
+    """
+    for row in grid:
+        for element in row:
+            yield element
+
+
+def iter_grid_idx(grid: list[list[Any]]) -> Iterable[tuple[int, int]]:
+    """
+    Iterates through each element in a 2D grid, yielding its indices and value.
+
+    Args:
+        grid (list[list[Any]]): A 2D list to iterate over.
+
+    Yields:
+        Tuple[int, int]: A tuple containing the row index, column index, and the value at that position.
+    """
+    for x, row in enumerate(grid):
+        for y, _ in enumerate(row):
+            yield x, y
