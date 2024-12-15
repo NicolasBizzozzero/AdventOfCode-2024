@@ -1,4 +1,5 @@
 import _io
+import copy
 
 import numpy as np
 
@@ -12,8 +13,8 @@ def parse_input(fp: _io.FileIO):
 
 def main(data) -> tuple[int, int]:
     return (
-        level1(data=data),
-        # level2(data=data)
+        level1(data=copy.deepcopy(data)),
+        # level2(data=copy.deepcopy(data))
     )
 
 

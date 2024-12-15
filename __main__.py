@@ -23,6 +23,7 @@ with open(
 
 def main(year: str):
     current_problem_number = get_current_problem_number()
+    # current_problem_number = 12
 
     if current_problem_number is None:
         for problem_number in range(1, 25):

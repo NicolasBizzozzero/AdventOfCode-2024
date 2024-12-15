@@ -190,3 +190,14 @@ def iter_grid_idx(grid: list[list[Any]]) -> Iterable[tuple[int, int]]:
     for x, row in enumerate(grid):
         for y, _ in enumerate(row):
             yield x, y
+
+
+def is_grid_mirrored(grid: list[list[Any]]) -> bool:
+    if not grid:
+        return True  # An empty grid is considered symmetrical.
+
+    for row in grid:
+        if row != row[::-1]:
+            return False
+
+    return True
