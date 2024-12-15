@@ -1,13 +1,10 @@
 import _io
-import math
-import sys
 import copy
 from dataclasses import dataclass
 import re
 from math import prod
 from typing import Any
 
-from tqdm import tqdm
 
 from src.common.grid import print_grid
 

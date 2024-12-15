@@ -22,8 +22,6 @@ def main(regions: dict[int, set[tuple[int, int]]]) -> tuple[int, int]:
     for region in regions.values():
         price += compute_price(region=region)
         price_discount += compute_price_discount(region=region)
-    print(price, price_discount)
-    exit(0)
     return price, price_discount
 
 
@@ -109,35 +107,44 @@ def region_perimeter(region: set[tuple[int, int]]) -> int:
 
 
 def region_sides(region: set[tuple[int, int]]) -> int:
-    """Given a set of (x,y) coordinates which forms a contiguous regions, returns the number of sides forming this
-    region.
-
-    :param region: The set of contiguous coordinates
-    :return: The perimeter of the region
+    """Given a set of (x,y) coordinates which forms a contiguous regions, returns the number of sides the figure formed
+    by those coordinates contains.
+    The number of sides == the number of corners of your polygon. So for each point, we just check that a corner exists
     """
-    # A set to store unique boundary segments
-    boundary_segments = set()
+    if len(region) == 1:
+        return 4
 
+    sides = 0
     for x, y in region:
-        # For each coordinate, consider its boundary edges
-        # Each edge is represented as a frozenset of two points to make it unordered
-        edges = [
-            frozenset({(x, y), (x + 1, y)}),  # Right edge
-            frozenset({(x, y), (x, y + 1)}),  # Top edge
-            frozenset({(x - 1, y), (x, y)}),  # Left edge
-            frozenset({(x, y - 1), (x, y)}),  # Bottom edge
-        ]
+        # Outer corners
+        sides += (x - 1, y) not in region and (x, y - 1) not in region
+        sides += (x + 1, y) not in region and (x, y - 1) not in region
+        sides += (x - 1, y) not in region and (x, y + 1) not in region
+        sides += (x + 1, y) not in region and (x, y + 1) not in region
 
-        for edge in edges:
-            if edge in boundary_segments:
-                # If the edge is already in the set, it's an internal edge; remove it
-                boundary_segments.remove(edge)
-            else:
-                # Otherwise, add it as a boundary edge
-                boundary_segments.add(edge)
+        # Inner corners
+        sides += (
+            (x - 1, y) in region
+            and (x, y - 1) in region
+            and (x - 1, y - 1) not in region
+        )
+        sides += (
+            (x + 1, y) in region
+            and (x, y - 1) in region
+            and (x + 1, y - 1) not in region
+        )
+        sides += (
+            (x - 1, y) in region
+            and (x, y + 1) in region
+            and (x - 1, y + 1) not in region
+        )
+        sides += (
+            (x + 1, y) in region
+            and (x, y + 1) in region
+            and (x + 1, y + 1) not in region
+        )
 
-    # The remaining edges in the set are the external boundary edges
-    return len(boundary_segments)
+    return sides
 
 
 def compute_price(region: set[tuple[int, int]]) -> int:
