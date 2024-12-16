@@ -201,3 +201,14 @@ def is_grid_mirrored(grid: list[list[Any]]) -> bool:
             return False
 
     return True
+
+
+def find_element(grid: list[list[Any]], element: Any) -> tuple[int, int]:
+    for idx_row, row in enumerate(grid):
+        for idx_col, elem in enumerate(row):
+            if elem == element:
+                return idx_col, idx_row
+
+
+def is_coordinate_valid(coordinate: tuple[int, int], grid: list[list[Any]]):
+    return 0 <= coordinate[1] < len(grid) and 0 <= coordinate[0] < len(grid[0])
